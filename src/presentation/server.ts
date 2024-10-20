@@ -11,16 +11,15 @@ export class Server {
 	public static start() {
 		console.log('Server started');
 		CronService.createJob('*/5 * * * * *', () => {
-			// new CheckService().execute(`https://google.com`);
-			const url = `https://localhost:3000`;
+			const url = `https://google.com`;
 			new CheckService(
-				fileSystemLogRepository
-				// () => {
-				// 	console.log(`${url} is ok`);
-				// },
-				// error => {
-				// 	console.log(error);
-				// }
+				fileSystemLogRepository,
+				() => {
+					console.log(`${url} is ok`);
+				},
+				error => {
+					console.log(error);
+				}
 			).execute(url);
 		});
 	}

@@ -1,7 +1,7 @@
 import fsp from 'fs/promises';
 
 import { LogDatasource } from '../../domain/datasources/log.datasource';
-import { LogEntity, LogSeverityLevel } from '../../domain/entities/Log.entity';
+import { LogEntity, LogSeverityLevel } from '../../domain/entities/log.entity';
 
 //Fernando herrera implements it instead of extending it; The difference is that
 //Implementing will force you to implement every method of the abstract class,
