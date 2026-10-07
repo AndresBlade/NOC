@@ -1,0 +1,17 @@
+// use prisma-8
+// Contract inferred from the live database schema. Edit as needed, then run `prisma contract emit`.
+
+enum LogSeverityLevel {
+    Low = "low"
+    Medium = "medium"
+    High = "high"
+}
+
+model LogModel {
+    id Int @id @default(autoincrement())
+    message String
+    level LogSeverityLevel @default(Low)
+    origin String
+    createdAt DateTime @default(now())
+    @@map("logModel")
+}

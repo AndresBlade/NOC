@@ -44,4 +44,33 @@ export class LogEntity {
 
 		return log;
 	}
+
+	static fromObject(obj: { [key: string]: unknown }): LogEntity {
+		const { message, level, createdAt, origin } = obj;
+
+		if (typeof message !== 'string') {
+			throw new Error('Invalid message');
+		}
+
+		if (LogSeverityLevel.high !== level && LogSeverityLevel.medium !== level && LogSeverityLevel.low !== level) {
+			throw new Error('Invalid level');
+		}
+
+		if (typeof origin !== 'string') {
+			throw new Error('Invalid origin');
+		}
+
+		if (typeof createdAt !== 'string') {
+			throw new Error('Invalid createdAt');
+		}
+
+		const log = new LogEntity({
+			message: message,
+			level: level,
+			origin: origin,
+			createdAt: createdAt ? new Date(createdAt) : new Date(),
+		});
+
+		return log;
+	}
 }

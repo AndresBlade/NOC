@@ -1,9 +1,16 @@
-import 'dotenv/config';
-import * as env from 'env-var';
+import * as z from 'zod';
 
-export const envs = {
-	PORT: env.get('PORT').required().asPortNumber(),
-	MAILER_EMAIL: env.get('MAILER_EMAIL').required().asEmailString(),
-	MAILER_SECRET_KEY: env.get('MAILER_SECRET_KEY').required().asString(),
-	PROD: env.get('PROD').required().asBoolStrict(),
-};
+const envSchema = z.object({
+	// PORT: z.number().int().positive(),
+	PORT: z.coerce.number<string>().int().positive(),
+	MAILER_EMAIL: z.email(),
+	MAILER_SECRET_KEY: z.string(),
+	PROD: z.coerce.boolean<string>(),
+	MAILER_SERVICE: z.string(),
+	MONGO_URL: z.string(),
+	MONGO_DB_NAME: z.string(),
+	MONGO_USER: z.string(),
+	MONGO_PASS: z.string(),
+})
+
+export const envs = envSchema.parse(process.env);
