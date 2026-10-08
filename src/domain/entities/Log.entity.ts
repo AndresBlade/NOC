@@ -60,7 +60,7 @@ export class LogEntity {
 			throw new Error('Invalid origin');
 		}
 
-		if (typeof createdAt !== 'string') {
+		if (typeof createdAt !== 'string' && typeof createdAt !== 'undefined') {
 			throw new Error('Invalid createdAt');
 		}
 

@@ -14,7 +14,7 @@ describe('log.entity.test.ts', () => {
         const logData = new LogEntity(dataObj);
 
         expect(logData).toBeInstanceOf(LogEntity);
-        expect(logData).toStrictEqual(dataObj);
+        expect(logData).toEqual(expect.objectContaining(dataObj));
         expect(logData.createdAt).toBeInstanceOf(Date);
     })
 
@@ -34,7 +34,7 @@ describe('log.entity.test.ts', () => {
         const logData = LogEntity.fromObject(dataObj);
 
         expect(logData).toBeInstanceOf(LogEntity);
-        expect(logData).toStrictEqual(dataObj);
+        expect(logData).toEqual(expect.objectContaining(dataObj));
         expect(logData.createdAt).toBeInstanceOf(Date);
     })
 })

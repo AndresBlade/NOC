@@ -15,8 +15,8 @@ describe('log.model.test.ts', () => {
     })
 
     afterAll(async () => {
-        await mongoose.disconnect()
         await LogModel.deleteMany({})
+        await mongoose.disconnect()
     })
 
     it('should return logModel', async () => {
