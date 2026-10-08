@@ -1,16 +1,5 @@
-import * as z from 'zod';
+import { envSchema } from './envs.schema'
 
-const envSchema = z.object({
-	// PORT: z.number().int().positive(),
-	PORT: z.coerce.number<string>().int().positive(),
-	MAILER_EMAIL: z.email(),
-	MAILER_SECRET_KEY: z.string(),
-	PROD: z.coerce.boolean<string>(),
-	MAILER_SERVICE: z.string(),
-	MONGO_URL: z.string(),
-	MONGO_DB_NAME: z.string(),
-	MONGO_USER: z.string(),
-	MONGO_PASS: z.string(),
-})
+export { envSchema }
 
 export const envs = envSchema.parse(process.env);
