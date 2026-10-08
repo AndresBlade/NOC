@@ -9,13 +9,13 @@ type ErrorCallback = (error: string) => void;
 
 export class CheckServiceMultiple implements CheckServiceMultipleUseCase {
     constructor(
-        private readonly logRepository: LogRepository[],
+        private readonly logRepositories: LogRepository[],
         private readonly successCallback?: SuccessCallback,
         private readonly errorCallback?: ErrorCallback
     ) { }
 
     private async saveLogToRepositories(log: LogEntity): Promise<void> {
-        for (const repo of this.logRepository) {
+        for (const repo of this.logRepositories) {
             await repo.saveLog(log);
         }
     }
